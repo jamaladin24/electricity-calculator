@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> (کاتژمێرەكانی یك رۆژ حیساب بكە)بەكارهێنانی كارەبای ماڵەوە  </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-4 max-w-4xl">
+        <h1 class="text-2xl font-bold text-center mb-6">  بەكارهێنانی كارەبای ماڵەوە (کاتژمێرەكانی یك رۆژ حیساب بكە) </h1>
+        <div id="rows" class="space-y-4">
+            <!-- Initial Row -->
+            <div class="row flex space-x-4 space-x-reverse bg-white p-4 rounded-lg shadow">
+                <div class="flex-1">
+                    <label class="block text-sm font-medium text-gray-700">بەكارهێنان (وات)</label>
+                    <input type="number" min="0" class="watt mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" placeholder="بۆنمونه: 100" required>
+                </div>
+                <div class="flex-1">
+                    <label class="block text-sm font-medium text-gray-700">دانە</label>
+                    <input type="number" min="0" class="quantity mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" placeholder="بۆنمونه: 2" required>
+                </div>
+                <div class="flex-1">
+                    <label class="block text-sm font-medium text-gray-700"> كاتژمێری ئیش پێكردن (كاتژمێر)</label>
+                    <input type="number" min="0" step="0.1" class="hours mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" placeholder="بۆنمونه: 5.5" required>
+                </div>
+                <div class="flex-1">
+                    <label class="block text-sm font-medium text-gray-700">بەكارهێنان (کیلۆوات‌ كاتژمێر)</label>
+                    <input type="text" class="result mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 bg-gray-100" readonly>
+                </div>
+            </div>
+            <!-- Two more initial rows -->
+            <div class="row flex space-x-4 space-x-reverse bg-white p-4 rounded-lg shadow">
+                <div class="flex-1">
+                    <label class="block text-sm font-medium text-gray-700">بەكارهێنان (وات)</label>
+                    <input type="number" min="0" class="watt mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" placeholder="بۆنمونه: 100" required>
+                </div>
+                <div class="flex-1">
+                    <label class="block text-sm font-medium text-gray-700">دانه</label>
+                    <input type="number" min="0" class="quantity mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" placeholder="بۆنمونه: 2" required>
+                </div>
+                <div class="flex-1">
+                    <label class="block text-sm font-medium text-gray-700">كاتژمێری ئیش پێكردن  (كاتژمێر)</label>
+                    <input type="number" min="0" step="0.1" class="hours mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" placeholder="بۆنمونه: 5.5" required>
+                </div>
+                <div class="flex-1">
+                    <label class="block text-sm font-medium text-gray-700">بەكارهێنان (کیلۆوات‌ كاتژمێر)</label>
+                    <input type="text" class="result mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 bg-gray-100" readonly>
+                </div>
+            </div>
+            <div class="row flex space-x-4 space-x-reverse bg-white p-4 rounded-lg shadow">
+                <div class="flex-1">
+                    <label class="block text-sm font-medium text-gray-700">بەكارهێنان (وات)</label>
+                    <input type="number" min="0" class="watt mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" placeholder="بۆنمونه: 100" required>
+                </div>
+                <div class="flex-1">
+                    <label class="block text-sm font-medium text-gray-700">دانه</label>
+                    <input type="number" min="0" class="quantity mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" placeholder="بۆنمونه: 2" required>
+                </div>
+                <div class="flex-1">
+                    <label class="block text-sm font-medium text-gray-700"> كاتژمێری ئیش پێكردن (كاتژمێر)</label>
+                    <input type="number" min="0" step="0.1" class="hours mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" placeholder="بۆنمونه: 5.5" required>
+                </div>
+                <div class="flex-1">
+                    <label class="block text-sm font-medium text-gray-700">بەكارهێنان (کیلۆوات‌ كاتژمێر)</label>
+                    <input type="text" class="result mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 bg-gray-100" readonly>
+                </div>
+            </div>
+        </div>
+        <button id="addRow" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">+ زیایكردنی ئامراز </button>
+        <div class="mt-6 bg-white p-4 rounded-lg shadow">
+            <h2 class="text-lg font-semibold">كۆی گشنی </h2>
+            <p>بەكارهێنانی ڕۆژانه : <span id="dailyTotal" class="font-medium">0</span> کیلۆوات‌ كاتژمێر</p>
+            <p>بەكارهێنانی مانگانه  (30رۆژ ): <span id="monthlyTotal" class="font-medium">0</span> کیلۆوات‌ كاتژمێر</p>
+            <p>تێچونی مانگانه: <span id="monthlyCost" class="font-medium">0</span> دینار</p>
+        </div>
+    </div>
+    <script>
+        function calculateRow(row) {
+            const watt = parseFloat(row.querySelector('.watt').value) || 0;
+            const quantity = parseFloat(row.querySelector('.quantity').value) || 0;
+            const hours = parseFloat(row.querySelector('.hours').value) || 0;
+            const kWh = (watt * quantity * hours) / 1000;
+            row.querySelector('.result').value = kWh.toFixed(2);
+            return kWh;
+        }
+
+        function calculateTotal() {
+            const rows = document.querySelectorAll('.row');
+            let dailyTotal = 0;
+            rows.forEach(row => {
+                dailyTotal += calculateRow(row);
+            });
+            const monthlyTotal = dailyTotal * 30;
+            document.getElementById('dailyTotal').textContent = dailyTotal.toFixed(2);
+            document.getElementById('monthlyTotal').textContent = monthlyTotal.toFixed(2);
+            document.getElementById('monthlyCost').textContent = calculateCost(monthlyTotal).toFixed(0);
+        }
+
+        function calculateCost(kWh) {
+            let cost = 0;
+            if (kWh <= 400) {
+                cost = kWh * 72;
+            } else if (kWh <= 800) {
+                cost = 400 * 72 + (kWh - 400) * 108;
+            } else if (kWh <= 1200) {
+                cost = 400 * 72 + 400 * 108 + (kWh - 800) * 175;
+            } else if (kWh <= 1600) {
+                cost = 400 * 72 + 400 * 108 + 400 * 175 + (kWh - 1200) * 265;
+            } else {
+                cost = 400 * 72 + 400 * 108 + 400 * 175 + 400 * 265 + (kWh - 1600) * 350;
+            }
+            return cost;
+        }
+
+        document.getElementById('addRow').addEventListener('click', () => {
+            const row = document.createElement('div');
+            row.className = 'row flex space-x-4 space-x-reverse bg-white p-4 rounded-lg shadow';
+            row.innerHTML = `
+                <div class="flex-1">
+                    <label class="block text-sm font-medium text-gray-700">بەكارهێنان (وات)</label>
+                    <input type="number" min="0" class="watt mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" placeholder="بۆنمونه: 100" required>
+                </div>
+                <div class="flex-1">
+                    <label class="block text-sm font-medium text-gray-700">دانه</label>
+                    <input type="number" min="0" class="quantity mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" placeholder="بۆنمونه: 2" required>
+                </div>
+                <div class="flex-1">
+                    <label class="block text-sm font-medium text-gray-700">كاتژمێری ئیش پێكردن  (كاتژمێر)</label>
+                    <input type="number" min="0" step="0.1" class="hours mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" placeholder="بۆنمونه: 5.5" required>
+                </div>
+                <div class="flex-1">
+                    <label class="block text-sm font-medium text-gray-700">بەكارهێنان (کیلۆوات‌ كانژمێر)</label>
+                    <input type="text" class="result mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 bg-gray-100" readonly>
+                </div>
+            `;
+            document.getElementById('rows').appendChild(row);
+            row.querySelectorAll('input').forEach(input => {
+                input.addEventListener('input', calculateTotal);
+            });
+        });
+
+        document.querySelectorAll('.row input').forEach(input => {
+            input.addEventListener('input', calculateTotal);
+        });
+    </script>
+</body>
+</html>
